@@ -7,12 +7,13 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-public class Moniteur extends Personne {
+public class Moniteur extends Plongeur {
 
     public int numeroDiplome;
 
-    public Moniteur(String numeroINSEE, String nom, String prenom, String adresse, String telephone, LocalDate naissance, int numeroDiplome) {
-        super(numeroINSEE, nom, prenom, adresse, telephone, naissance);
+    public Moniteur(String numeroINSEE, String nom, String prenom, String adresse, 
+    		String telephone, LocalDate naissance, int numeroDiplome, int niveau, GroupeSanguin groupe, int numDiplome ) {
+        super(numeroINSEE, nom, prenom, adresse, telephone, naissance, niveau, groupe);
         this.numeroDiplome = numeroDiplome;
     }
 

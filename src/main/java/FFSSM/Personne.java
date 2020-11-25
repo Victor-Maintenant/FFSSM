@@ -6,7 +6,7 @@ package FFSSM;
 
 import java.time.LocalDate;
 
-public class Personne
+public abstract class Personne
 {
 	public String numeroINSEE;
 	
