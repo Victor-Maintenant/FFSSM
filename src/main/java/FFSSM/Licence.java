@@ -8,13 +8,9 @@ import java.time.LocalDate;
 public class Licence {
 
     public Personne possesseur;
-
     public String numero;
-
     public LocalDate delivrance;
-
     public int niveau;
-
     public Club club;
 
     public Licence(Personne possesseur, String numero, LocalDate delivrance, int niveau, Club club) {

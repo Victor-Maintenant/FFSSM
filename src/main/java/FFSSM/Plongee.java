@@ -50,4 +50,9 @@ public class Plongee {
 		return true;
 	}
 
+
+	public List<Licence> getPlongeurs() {
+		return plongeurs;
+	}
+
 }

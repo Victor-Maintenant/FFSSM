@@ -21,6 +21,14 @@ public class Plongeur extends Personne {
 		Licence l = new Licence(numero, delivrance);
 		this.licenses.add(l);
 	}
+
+	public List<Licence> getLicenses() {
+		return licenses;
+	}
+	
+	public int getNiveau() {
+		return niveau;
+	}
 	
 	
 }
