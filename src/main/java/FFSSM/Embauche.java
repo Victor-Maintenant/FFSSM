@@ -75,5 +75,8 @@ public class Embauche {
         return debut;
     }
 
+    public String toStrin() {
+    	return "Embauche "+this.fin;
+    }
     
 }

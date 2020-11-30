@@ -29,15 +29,21 @@ public class Club {
      * Une plongée est conforme si tous les plongeurs de la palanquée ont une licence
      * valide à la date de la plongée
      * @return l'ensemble des plongées non conformes
+     * @throws Exception 
      */
-    public Set<Plongee> plongeesNonConformes() {
-    	Set<Plongee> pNonValide = new HashSet<>();
-        for( Plongee p : this.activites) {
-        	if(!p.estConforme()) {
-        		pNonValide.add(p);
-        	}
-        }
-        return pNonValide;
+    public Set<Plongee> plongeesNonConformes() throws Exception {
+    	if(this.activites.isEmpty()) {
+    		throw new Exception("Aucune plongée ajoutée");
+    	}
+    	else {
+    		Set<Plongee> pNonValide = new HashSet<>();
+            for( Plongee p : this.activites) {
+            	if(!p.estConforme()) {
+            		pNonValide.add(p);
+            	}
+            }
+            return pNonValide;
+    	}
     }
 
     /**
@@ -49,7 +55,11 @@ public class Club {
     }
     
     
-    public Moniteur getPresident() {
+    public List<Plongee> getActivites() {
+		return activites;
+	}
+
+	public Moniteur getPresident() {
         return president;
     }
 
