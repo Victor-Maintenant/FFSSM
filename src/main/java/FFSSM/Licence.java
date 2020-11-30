@@ -65,7 +65,7 @@ public class Licence {
      * @return vrai si valide à la date d
      **/
     public boolean estValide(LocalDate d) {
-         return this.delivrance.plusYears(1).isAfter(d);
+         return this.delivrance.plusYears(1).isAfter(d) || this.delivrance.plusYears(1).isEqual(d) ;
     }
 
 }

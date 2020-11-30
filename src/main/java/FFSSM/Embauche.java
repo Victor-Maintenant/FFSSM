@@ -19,8 +19,10 @@ public class Embauche {
      * Termine cette embauche
      * @param dateFin la date à laquelle cette embauche est terminée
      */
-    public void terminer(LocalDate dateFin) {
-         this.fin = dateFin;	    
+    public void terminer(LocalDate dateFin) throws Exception {
+         if ( dateFin.isBefore(this.debut))  
+        	 throw new IllegalArgumentException ("La date saisi est inférieur à la date de début de contrat");
+         else this.fin = dateFin;	     
     }
     
     /**

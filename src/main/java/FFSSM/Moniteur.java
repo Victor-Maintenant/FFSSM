@@ -48,7 +48,7 @@ public class Moniteur extends Plongeur {
      */
     public List<Embauche> emplois() throws Exception {
     	if (this.emplois.isEmpty()) throw new Exception("Pas d'emploi enregistré");
-        	return this.emplois;
+    	return this.emplois;
     	}
 }
 

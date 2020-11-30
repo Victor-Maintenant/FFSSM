@@ -44,8 +44,9 @@ public class FFSSMTest {
 	@Test
 	public void testLicenceEstValide() {
 		Licence l = new Licence(p1, "L1", date, p1.getNiveau(), c1);
-		assertTrue(l.estValide(date.plusMonths(2)));
-		assertFalse(l.estValide(date.plusYears(2)));
+		assertTrue(l.estValide(date.plusDays(1)));
+		assertTrue(l.estValide(date.plusYears(1)));
+		assertFalse(l.estValide(date.plusYears(1).plusDays(1)));
 	}
 
 	@Test
@@ -71,11 +72,14 @@ public class FFSSMTest {
 	}
 
 	@Test
-	public void testEstConformePlongee() {
+	public void testEstConformePlongee() throws Exception {
 		Site s = new Site("Marseille", "details");
 		Plongee p = new Plongee(s, m1, date, 25, 60);
 		Licence l1 = new Licence(p1, "L1", date.minusMonths(2), p1.getNiveau(), c1);
 		Licence l2 = new Licence(p2, "L2", date.minusYears(2), p2.getNiveau(), c1);
+		assertThrows(Exception.class, ()-> {
+			p.estConforme();
+		});
 		p.ajouteParticipant(l1);
 		assertTrue(p.estConforme());
 		p.ajouteParticipant(l2);
@@ -94,8 +98,12 @@ public class FFSSMTest {
 	}
 	
 	@Test 
-	public void testEmbauche() {
+	public void testEmbauche() throws Exception {
 		Embauche e  = new Embauche(date, m1, c1);
+		assertFalse(e.estTerminee());
+		assertThrows(IllegalArgumentException.class,()->{
+			e.terminer(date.minusMonths(2));
+		});
 		assertFalse(e.estTerminee());
 		e.terminer(date.plusMonths(2));
 		assertEquals(date.plusMonths(2), e.getFin());

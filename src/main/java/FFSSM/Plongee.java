@@ -38,8 +38,10 @@ public class Plongee {
 	 * Une plongée est conforme si tous les plongeurs de la palanquée ont une
 	 * licence valide à la date de la plongée
 	 * @return vrai si la plongée est conforme
+	 * @throws Exception 
 	 */
-	public boolean estConforme() {
+	public boolean estConforme() throws Exception {
+		if (this.plongeurs.isEmpty()) throw new Exception("Aucune plongée enregistrée");
 		for(Licence l : this.plongeurs) {
 			if (!l.estValide(this.date)) {
 				return false;
