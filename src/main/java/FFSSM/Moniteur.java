@@ -13,17 +13,13 @@ import java.util.Optional;
 public class Moniteur extends Plongeur {
 
     public int numeroDiplome;
-    private final HashMap<Club, Embauche> emplois = new HashMap<>();
+    private final List<Embauche> emplois = new LinkedList<>();
 
     public Moniteur(String numeroINSEE, String nom, String prenom, String adresse, 
     		String telephone, LocalDate naissance, int numeroDiplome, int niveau, GroupeSanguin groupe, int numDiplome ) {
         super(numeroINSEE, nom, prenom, adresse, telephone, naissance, niveau, groupe);
         this.numeroDiplome = numeroDiplome;
     }
-
-    public Map<Club, Embauche> getEmplois() {
-		return emplois;
-	}
 
 	/**
      * Si ce moniteur n'a pas d'embauche, ou si sa dernière embauche est terminée,
@@ -32,16 +28,8 @@ public class Moniteur extends Plongeur {
      */
     public Optional<Club> employeurActuel() throws Exception {
     	if (this.emplois.isEmpty()) throw new Exception("Aucun emploi");
-    	Club c = new Club(null, null, null);
-    	Embauche e = new Embauche(naissance,  null, null);
-    	for (Club club : this.emplois.keySet()) {
-    		if (this.emplois.get(club).getDebut().isAfter(e.getDebut())) {
-    			e = this.emplois.get(club);
-    			c = club;
-    		}
-    	}
-    	if (this.emplois.get(c).estTerminee()) throw new Exception("Dernier emploi déjà terminé");
-    	return Optional.ofNullable(this.emplois.get(c).getEmployeur());
+    	if (this.emplois.get(this.emplois.size()-1).estTerminee()) throw new Exception("Dernier emploi déjà terminé");
+    	return Optional.ofNullable(this.emplois.get(this.emplois.size()-1).getEmployeur());
     }
     
     /**
@@ -51,7 +39,7 @@ public class Moniteur extends Plongeur {
      */
     public void nouvelleEmbauche(Club employeur, LocalDate debutNouvelle) {   
     	Embauche e = new Embauche(debutNouvelle, this, employeur);
-    	this.emplois.put(employeur, e);
+    	this.emplois.add(e);
     }
 
     
@@ -61,16 +49,8 @@ public class Moniteur extends Plongeur {
      * @throws Exception 
      */
     public List<Embauche> emplois() throws Exception {
-    	if (this.emplois.isEmpty()) {
-    		throw new Exception("Aucun emplois enregistré");
+    	if (this.emplois.isEmpty()) throw new Exception("Pas d'emploi enregistré");
+        	return this.emplois;
     	}
-    	else {
-    		List<Embauche> e = new LinkedList<>();
-        	this.emplois.forEach((club, embauche) ->{
-        		e.add(embauche);
-        	});
-        	return e;
-    	}
-    }
-
 }
+

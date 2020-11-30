@@ -124,7 +124,6 @@ public class FFSSMTest {
 
 	@Test
 	public void testEmploisMoniteur() throws Exception {
-		assertTrue(m1.getEmplois().isEmpty());
 		assertThrows(Exception.class, () -> {
 		       m1.emplois();
 		    });
@@ -139,7 +138,7 @@ public class FFSSMTest {
 			m1.employeurActuel();
 	    });
 		m1.nouvelleEmbauche(c1, date.minusYears(1));
-		m1.getEmplois().get(c1).terminer(date.minusWeeks(1));
+		m1.emplois().get(m1.emplois().size()-1).terminer(date.minusWeeks(1));
 		assertThrows(Exception.class, () -> {
 			m1.employeurActuel();
 	    });
