@@ -66,6 +66,8 @@ public class FFSSMTest {
 		Licence l = new Licence(p1, "L1", date, p1.getNiveau(), c1);
 		p.ajouteParticipant(l);
 		assertEquals(1,p.getPlongeurs().size());
+		p.ajouteParticipant(l);
+		assertEquals(1,p.getPlongeurs().size());
 	}
 
 	@Test

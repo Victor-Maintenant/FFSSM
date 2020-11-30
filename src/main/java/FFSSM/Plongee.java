@@ -4,10 +4,8 @@
 package FFSSM;
 
 import java.time.LocalDate;
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 
 public class Plongee {
 
@@ -28,7 +26,7 @@ public class Plongee {
 	
 
 	public void ajouteParticipant(Licence l) {
-		this.plongeurs.add(l);
+		if (!this.plongeurs.contains(l)) this.plongeurs.add(l);
 	}
 
 	public LocalDate getDate() {
